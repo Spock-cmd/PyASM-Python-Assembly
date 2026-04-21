@@ -2,7 +2,7 @@
 An assembly-like programming language built entirely with Python
 You can also download the `.exe` file if you dont want any assets.
 
-# File Structure (for the `.py` file)
+# File Structure (for the `.py` file) 
 `
 PyASM-IDE/
    PyASM_IDE.py
