@@ -45,7 +45,9 @@ Install Kivy using pip:
 pip install kivy
 ```
 
-No other dependencies are required. The virtual machine itself is pure Python.
+Download here: https://www.python.org/downloads/
+No other dependencies are required. The virtual machine itself is
+pure Python.
 
 ---
 
@@ -55,7 +57,8 @@ No other dependencies are required. The virtual machine itself is pure Python.
 python pyasm_ide.py
 ```
 
-If Kivy is not installed the script falls back to a headless mode that runs the built-in demo program and prints results to the terminal.
+If Kivy is not installed the script falls back to a headless mode that
+runs the built-in demo program and prints results to the terminal.
 
 ---
 
@@ -63,8 +66,8 @@ If Kivy is not installed the script falls back to a headless mode that runs the 
 
 The window is divided into three sections.
 
-**Toolbar** runs across the top and contains these buttons:
-
+**Toolbar** runs across the top and contains
+these buttons:
 
 New File - Clears the editor and resets the VM
 Save File - Saves the current code to a `.pyasm` file
@@ -74,9 +77,15 @@ Run - Loads and runs the entire program in one go
 Reset Registers - Resets the VM state without clearing the editor
 Help - Opens a quick-reference popup
 
-**Editor and Console** sit side by side below the toolbar. Write your PyASM code on the left. Output from `out` instructions and any error messages appear on the right. The status bar at the bottom of the console shows the current program counter, execution status, variable count, and function count.
+**Editor and Console** sit side by side below the toolbar. Write your PyASM
+code on the left. Output from `out` instructions and any error messages appear
+on the right. The status bar at the bottom of the console shows the current
+program counter, execution status, variable count, and function count.
 
-**Register Panel** sits at the bottom of the window and shows all 16 registers. Each box displays the register name and its current list of values. The panel scrolls horizontally so all 16 registers are always accessible. Register values update automatically after every instruction.
+**Register Panel** sits at the bottom of the window and shows all 16 registers.
+Each box displays the register name and its current list of values. The panel
+scrolls horizontally so all 16 registers are always accessible. Register values
+update automatically after every instruction.
 
 ---
 
@@ -95,7 +104,8 @@ append reg1 10   // this is a comment
 
 ### Variables
 
-Variables store a single integer or string value. They are declared with `var` and can be read by most instructions.
+Variables store a single integer or string value. They are declared
+with `var` and can be read by most instructions.
 
 ```
 var x = 10
@@ -103,13 +113,18 @@ var message = 'hello world'
 var copy = x
 ```
 
-The right-hand side can be a literal integer, a hex literal, a string in single or double quotes, or the name of an existing variable or register (which reads the last value of that register).
+The right-hand side can be a literal integer, a hex literal, a string in
+single or double quotes, or the name of an existing variable or register
+(which reads the last value of that register).
 
 ---
 
 ### Registers
 
-There are 16 registers named `reg1` through `reg16`. Each register is a **list of integers**. Most operations read from and write to the **last element** of the list (like a stack top). A register starts empty and grows as values are appended to it.
+There are 16 registers named `reg1` through `reg16`. Each register is 
+a **list of integers**. Most operations read from and write to the
+**last element** of the list (like a stack top). A register starts
+empty and grows as values are appended to it.
 
 ---
 
@@ -123,7 +138,8 @@ append reg2 reg1    // pushes the last value of reg1 onto reg2
 append reg3 x       // pushes the value of variable x
 ```
 
-**mov** — move all values from one register to another. The source register is cleared.
+**mov** — move all values from one register to another. The source
+register is cleared.
 
 ```
 mov reg2 reg1       // reg2 gets all of reg1's values; reg1 becomes empty
@@ -146,7 +162,9 @@ reg1-3              // subtracts 3 from reg1's last element
 
 ### Arithmetic
 
-All arithmetic instructions append their result to the destination register. They read the last element of each source register (or resolve the token as a variable or literal).
+All arithmetic instructions append their result to the destination register.
+They read the last element of each source register (or resolve the token as
+a variable or literal).
 
 ```
 add reg3 reg1 reg2   // reg3 gets reg1[-1] + reg2[-1]
@@ -188,7 +206,9 @@ out 'hello'          // prints the string literally
 out "world"          // double quotes work too
 ```
 
-**input** — prompt the user for a value and store it in a register. The value is interpreted as a hexadecimal integer first, then as a decimal integer if that fails.
+**input** — prompt the user for a value and store it in a register. The
+value is interpreted as a hexadecimal integer first, then as a decimal
+integer if that fails.
 
 ```
 input "Enter a value" reg1
@@ -201,7 +221,8 @@ A popup dialog appears in the IDE when `input` is reached during execution.
 
 ### Functions
 
-A function is a named block of instructions. It is defined once and can be called any number of times. Functions are **not executed at definition time**.
+A function is a named block of instructions. It is defined once and can be
+called any number of times. Functions are **not executed at definition time**.
 
 ```
 define greet
@@ -213,13 +234,16 @@ call greet
 call greet     // can be called multiple times
 ```
 
-Functions can call other functions. Recursive calls are supported but there is no call-depth limit enforced by the VM, so infinite recursion will crash Python.
+Functions can call other functions. Recursive calls are supported but there
+is no call-depth limit enforced by the VM, so infinite recursion will crash Python.
 
 ---
 
 ### Loops
 
-A loop repeats a block of instructions a fixed number of times. Instructions inside the loop are separated by semicolons. If the repeat count is omitted it defaults to 1.
+A loop repeats a block of instructions a fixed number of times. Instructions
+inside the loop are separated by semicolons. If the repeat count is omitted 
+it defaults to 1.
 
 ```
 [ reg1+1 ]5                 // increment reg1's top value 5 times
@@ -227,7 +251,8 @@ A loop repeats a block of instructions a fixed number of times. Instructions ins
 [ append reg2 0; reg1+1 ]3  // two instructions, repeated 3 times
 ```
 
-The loop syntax is a single line. For more complex repeated logic, put the body in a function and call it inside the loop:
+The loop syntax is a single line. For more complex repeated logic, put the
+body in a function and call it inside the loop:
 
 ```
 define body
@@ -261,9 +286,12 @@ skip
 
 `Syntax Error` - An unrecognised instruction or malformed statement
 `Register Name Error` - A register name that is not `reg1`–`reg16'
-`Undefined Value Error` - An empty register read, an unknown variable, an invalid input value, or division by zero
+`Undefined Value Error` - An empty register read, an unknown variable,
+an invalid input value, or division by zero
 
-Errors are printed to the console panel and execution stops. The program counter and register state at the point of failure are preserved so you can inspect them.
+Errors are printed to the console panel and execution stops. The program
+counter and register state at the point of failure are preserved so you
+can inspect them.
 
 ---
 
@@ -275,7 +303,9 @@ Files are saved with the `.pyasm` extension to the following folder:
 ~/Python Assembly Files/
 ```
 
-The folder is created automatically if it does not exist. Click **Save File**, type a filename without extension, and press Enter or click Save. Click **Load File** to browse and open any `.pyasm` file from that folder.
+The folder is created automatically if it does not exist. Click **Save File**, type
+a filename without extension, and press Enter or click Save. Click **Load File** to
+browse and open any `.pyasm` file from that folder.
 
 ---
 
@@ -288,7 +318,8 @@ fonts/DOSfont.ttf        (used in the code editor)
 fonts/CascadiaMono.ttf   (used in the console)
 ```
 
-If either file is missing the IDE falls back to Kivy's built-in Roboto font automatically. No error is raised and the IDE works normally either way.
+If either file is missing the IDE falls back to Kivy's built-in Roboto font automatically.
+No error is raised and the IDE works normally either way.
 
 A custom window icon can be placed at:
 
