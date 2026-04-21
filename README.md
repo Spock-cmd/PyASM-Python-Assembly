@@ -3,7 +3,7 @@ An assembly-like programming language built entirely with Python
 You can also download the `.exe` file if you dont want any assets.
 
 # File Structure (for the `.py` file) 
-`
+```
 PyASM-IDE/
    PyASM_IDE.py
    ico/
@@ -11,7 +11,7 @@ PyASM-IDE/
    fonts/
       DOSfont.ttf
       CascadiaMono.ttf
-`
+```
 You can edit these files except the `.py` file to customize
 your IDE.
 
