@@ -37,7 +37,7 @@ your IDE.
    - [Control Flow](#control-flow)
 6. [Error Types](#error-types)
 7. [Saving and Loading Files](#saving-and-loading-files)
-8. [Custom Fonts](#custom-fonts)
+8. [Customize Assets](#Customize-Assets)
 9. [Running Without Kivy](#running-without-kivy)
 10. [Example Program](#example-program)
 
@@ -322,7 +322,7 @@ browse and open any `.pyasm` file from that folder.
 
 ---
 
-## Custom Fonts
+## Customize Assets
 
 The IDE will use custom fonts if you place them in a `fonts/` folder next to the script:
 
