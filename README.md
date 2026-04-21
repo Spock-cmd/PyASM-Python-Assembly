@@ -359,7 +359,7 @@ This is useful for testing the virtual machine on its own or in environments whe
 ---
 
 ## Example Program
-
+Here is an example program you can paste directly into the IDE.
 ```
 // Compute the sum of 1 through 5 and print it
 
