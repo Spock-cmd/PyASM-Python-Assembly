@@ -297,8 +297,8 @@ skip
 ## Error Types
 
 
-`Syntax Error` - An unrecognised instruction or malformed statement
-`Register Name Error` - A register name that is not `reg1`–`reg16'
+`Syntax Error` - An unrecognised instruction or malformed statement  
+`Register Name Error` - A register name that is not `reg1`–`reg16'  
 `Undefined Value Error` - An empty register read, an unknown variable,
 an invalid input value, or division by zero
 
